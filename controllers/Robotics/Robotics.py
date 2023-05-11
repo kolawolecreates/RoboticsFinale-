@@ -81,7 +81,20 @@ def finaldestination():
 def release():
     pickup_joints[6].setPosition(0.0015)
     pickup_joints[7].setPosition(0.0015)
-
+    
+def return1():
+    pickup_joints[0].setPosition(0)
+    
+    
+def return2():
+    pickup_joints[2].setPosition(0)
+    pickup_joints[6].setPosition(0)
+    pickup_joints[7].setPosition(0)
+    pickup_joints[5].setPosition(0)
+    pickup_joints[4].setPosition(0)
+    pickup_joints[3].setPosition(0)
+    pickup_joints[1].setPosition(0)
+    
 
     
 #the  main loop
@@ -90,16 +103,21 @@ while pickup.step(timestep) != -1:
     
     
        t = pickup.getTime()# creates a variable for the time the simulation took
-       if t > 10 and t < 12.5:
+       if t > 8 and t < 11:
           action()  #go for the box after 10s less than 12.5s
-       elif t >= 12.5 and t < 15:
+       elif t >= 11 and t < 14:
           actionpick() #lock the arm with the box in it within 2.5s
-       elif t > 15 and t < 17.5:
+       elif t > 14 and t < 18:
             destination(0, 0.335, 0.1, 0.003) #lift up the arm withn 2.5s
-       elif t > 17.5 and t < 22.5:
+       elif t > 18 and t < 22:
             finaldestination() #turn the arm to the storage box in 5s
-       elif t > 22.5 and t < 25:
+       elif t > 22 and t < 25:
             release()   #release the box
+       elif t > 25 and t < 27.5:
+            return1()  #first part to return back the arm
+       elif t > 28 and t < 32:
+            return2()   #second part to return back the arm
+            
        
 
 pass
