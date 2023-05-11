@@ -41,15 +41,11 @@ for i in range(0,8):
 # y = 0.53
 # z = 0.62
 
-x = 0.00
+x = 0.02
 y = 0.25 + 0.015
 z = -0.005 + 0.010
 
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
+
 
 def action():
     iksolution = pickupchain.inverse_kinematics([x,y,z])
@@ -85,12 +81,11 @@ def release():
 
 
     
-# Main loop:
-# - perform simulation steps until Webots is stopping the controller
+
 while pickup.step(timestep) != -1:
-    # Read the sensors:
-    # Enter here functions to read sensor data, like:
-    #  val = ds.getValue()
+    
+    
+    
        t = pickup.getTime()
        if t > 10 and t < 12.5:
           action()
@@ -103,10 +98,7 @@ while pickup.step(timestep) != -1:
        elif t > 22.5 and t < 25:
             release()
        
-    # Process sensor data here.
 
-    # Enter here functions to send actuator commands, like:
-    #  motor.setPosition(10.0)
 pass
 
-# Enter here exit cleanup code.
+

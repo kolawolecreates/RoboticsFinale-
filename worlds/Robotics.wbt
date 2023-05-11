@@ -7,14 +7,12 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/niryo/ned/protos/Ned.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/containers/protos/WoodenBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/containers/protos/MetalStorageBox.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/robotis/darwin-op/protos/RobotisOp3.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/balls/protos/SoccerBall.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2694952564256937 0.06746172464052788 0.9606358428002649 2.6694585297103397
-  position 4.141640135842745 -2.8550278115584 2.298723933720959
+  orientation -0.27839924289360496 -0.09682665904242996 0.9555723204734159 3.7831698189823797
+  position 3.9407652411949834 3.002284608899175 2.5793175035794125
 }
 TexturedBackground {
 }
@@ -26,13 +24,6 @@ RectangleArena {
   floorTileSize 1 1
   floorAppearance Parquetry {
   }
-}
-SoccerBall {
-  translation 0.07 -1.5 0.06
-  radius 0.1
-}
-RobotisOp3 {
-  translation 0 -1.52 0.279
 }
 Solid {
   translation 1.5 0.78 0.615
