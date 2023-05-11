@@ -1,26 +1,27 @@
-from controller import Robot, Motor, DistanceSensor, PositionSensor #import the robots, motor and sensors to the file
-import ikpy #import the IKPy library
-from ikpy.chain import Chain #import the chain from the IKPy library
-from ikpy.link import OriginLink, URDFLink #import the links from the IKPy library
-import tempfile #import the temporary file
+"""project controller."""
 
+# You may need to import some classes of the controller module. Ex:
+#  from controller import Robot, Motor, DistanceSensor
+from controller import Robot, Motor, DistanceSensor, PositionSensor
+import ikpy
+from ikpy.chain import Chain
+from ikpy.link import OriginLink, URDFLink
+import tempfile
 
-pickup  = Robot() #define the robot function
+# create the Robot instance.
+pickup  = Robot()
 
 # get the time step of the current world.
 timestep = int(pickup.getBasicTimeStep())
 
-# make code to ensure the right urdf file is written to the temporary file
 with tempfile.NamedTemporaryFile(suffix = '.urdf',  delete= False) as file:
      filename = file.name
      file.write(pickup.getUrdf().encode('utf-8'))
-     
+pickupchain = Chain.from_urdf_file(filename, active_links_mask = [False, True, True, True])
 
-pickupchain = Chain.from_urdf_file(filename, active_links_mask = [False, True, True, True, True, True, False, False,  False])
+joint_names = ['ArmLowerL', 'ArmLowerR', 'ArmUpperL',  'ArmUpperR', 'ShoulderL', 'ShoulderR']
 
-joint_names = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6', 'joint_base_to_jaw_1', 'joint_base_to_jaw_2']
-
-initPos = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+initPos = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 pickup_joints = []
 vel = 0.5
@@ -33,17 +34,17 @@ for i in range(0,8):
     
     
     
-# x= 1.98
-# y = 0.78
-# z = 0.615
+# x= 0.45
+# y = 0.29
+# z = 0.6
 
-# x = 2
-# y = 0.53
-# z = 0.62
+# x = 0.3
+# y = 0.13
+# z = 0.3
 
-x = 0.00
-y = 0.25 + 0.015
-z = -0.005 + 0.010
+x = -0.15 + 0.010
+y = -0.16 + 0.010
+z = -0.3 + 0.010
 
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
@@ -61,8 +62,8 @@ def action():
         pickup_joints[i].setPosition(iksolution[i+1])
 
 def actionpick():
-    pickup_joints[6].setPosition(0.003)
-    pickup_joints[7].setPosition(0.003)
+    pickup_joints[6].setPosition(0.0015)
+    pickup_joints[7].setPosition(0.0015)
     
     
 def destination(x,y,z, grip):
@@ -82,8 +83,6 @@ def finaldestination():
 def release():
     pickup_joints[6].setPosition(0.0015)
     pickup_joints[7].setPosition(0.0015)
-
-
     
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
@@ -92,15 +91,15 @@ while pickup.step(timestep) != -1:
     # Enter here functions to read sensor data, like:
     #  val = ds.getValue()
        t = pickup.getTime()
-       if t > 10 and t < 12.5:
+       if t > 5 and t < 7.5:
           action()
-       elif t >= 12.5 and t < 15:
+       elif t >= 7.5 and t < 10:
           actionpick() 
-       elif t > 15 and t < 17.5:
-            destination(0, 0.335, 0.1, 0.003)
-       elif t > 17.5 and t < 22.5:
+       elif t > 10 and t < 12.5:
+            destination(0, 0.32, 0.1, 0.0020)
+       elif t > 12.5 and t < 15:
             finaldestination()
-       elif t > 22.5 and t < 25:
+       elif t > 15 and t < 17.5:
             release()
        
     # Process sensor data here.

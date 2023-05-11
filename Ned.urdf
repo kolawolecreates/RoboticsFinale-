@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="C:/Users/Kolawole/Documents/University Of Hertfordshire/Bsc Computer Science/Robotics/RoboticsFinale!/Robot.urdf" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="C:/Users/Kolawole/Documents/University Of Hertfordshire/Bsc Computer Science/Robotics/RoboticsFinale!/Ned.urdf" xmlns:xacro="http://ros.org/wiki/xacro">
   <link name="base_link">
     <visual>
       <origin xyz="0.09 0.09 0.003" rpy="0 0 0"/>
@@ -211,7 +211,7 @@
     <child link="shoulder_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="10000" lower="-2.8" upper="2.8" velocity="10"/>
-    <origin xyz="0 0 0.1065" rpy="0 0 0"/>
+    <origin xyz="0 0 0.1065" rpy="0 0 -0.000001"/>
   </joint>
   <link name="shoulder_link">
     <visual>
@@ -304,7 +304,7 @@
     <child link="arm_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="10000" lower="-0.8" upper="0.8" velocity="10"/>
-    <origin xyz="0 0 0.065" rpy="0 -1.57 0"/>
+    <origin xyz="0 0 0.065" rpy="-0.000694 -1.57 0.000694"/>
   </joint>
   <link name="arm_link">
     <visual>
@@ -397,7 +397,7 @@
     <child link="elbow_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="10000" lower="-1.5" upper="1.3" velocity="10"/>
-    <origin xyz="0.221 0.012 0" rpy="0 0 0"/>
+    <origin xyz="0.221 0.012 0" rpy="0 0 0.000001"/>
   </joint>
   <link name="elbow_link">
     <visual>
@@ -442,7 +442,7 @@
     <child link="forearm_link"/>
     <axis xyz="-0.000001 0 1"/>
     <limit effort="10000" lower="-2" upper="2" velocity="10"/>
-    <origin xyz="0.032 0.042 0" rpy="-1.568653 -1.57 -0.001347"/>
+    <origin xyz="0.032 0.042 0" rpy="-1.568655 -1.57 -0.001346"/>
   </joint>
   <link name="forearm_link">
     <visual>
@@ -544,7 +544,7 @@
     <child link="hand_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="10000" lower="-2.5" upper="2.5" velocity="10"/>
-    <origin xyz="0.0197 0.00925 0" rpy="0 1.57 0"/>
+    <origin xyz="0.0197 0.00925 0" rpy="0.000009 1.57 0.000009"/>
   </joint>
   <link name="hand_link">
     <visual>
